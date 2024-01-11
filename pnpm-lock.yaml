@@ -20,6 +20,9 @@ dependencies:
   sanity:
     specifier: ^3.24.1
     version: 3.24.1(react-dom@18.2.0)(react@18.2.0)(styled-components@6.1.8)
+  zod:
+    specifier: ^3.22.4
+    version: 3.22.4
 
 devDependencies:
   '@typescript-eslint/eslint-plugin':
@@ -6422,4 +6425,8 @@ packages:
       archiver-utils: 3.0.4
       compress-commons: 4.1.2
       readable-stream: 3.6.2
+    dev: false
+
+  /zod@3.22.4:
+    resolution: {integrity: sha512-iC+8Io04lddc+mVqQ9AZ7OQ2MrUKGN+oIQyq1vemgt46jwCwLfhq7/pwnBnNXXXZb8VTVLKwp9EDkx+ryxIWmg==}
     dev: false
