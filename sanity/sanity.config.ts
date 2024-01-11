@@ -6,15 +6,14 @@ import { visionTool } from '@sanity/vision'
 import { clientEnv } from '@/lib/env/client'
 import { defineConfig } from 'sanity'
 import { structureTool } from 'sanity/structure'
+import { studioTitle } from './customize.sanity'
 //
-const title =
-	process.env.NEXT_PUBLIC_SANITY_PROJECT_TITLE || 'Studio'
 
 export default defineConfig({
 	basePath: '/studio',
 	projectId: clientEnv.NEXT_PUBLIC_SANITY_PROJECT_ID,
 	dataset: clientEnv.NEXT_PUBLIC_SANITY_DATASET,
-	title,
+	title: studioTitle,
 	schema: {
 		types: []
 	},
