@@ -1,0 +1,20 @@
+{
+  "name": "nextjs-c-template",
+  "private": true,
+  "scripts": {
+    "build": "next build",
+    "dev": "next",
+    "format": "npx prettier --write . --ignore-path .gitignore --cache",
+    "lint": "next lint -- --ignore-path .gitignore",
+    "lint:fix": "pnpm run format && npm run lint -- --fix",
+    "start": "next start",
+    "type-check": "tsc --noEmit"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true
+  },
+  "engines": {
+    "node": ">=16"
+  }
+}
