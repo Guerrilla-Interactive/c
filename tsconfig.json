@@ -14,7 +14,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    // Leave this unchanged and update paths assume the base dir is root
+    // Leave the baseUrl unchanged and update paths assume the base dir is root
     // irrespective of whether src dir is present
     "baseUrl": ".", 
     "paths": {
