@@ -19,6 +19,7 @@
     "node": ">=16"
   },
   "dependencies": {
+    "@phosphor-icons/react": "^2.0.15",
     "@sanity/vision": "^3.24.1",
     "next": "^14.0.4",
     "next-sanity": "^7.0.9",
