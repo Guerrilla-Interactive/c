@@ -7,7 +7,7 @@ import type {
   StructureResolverContext,
 } from 'sanity/structure'
 
-import { customDeskStructure } from './customize.sanity'
+import { customDeskStructure } from './customize/desk.custom.sanity'
 
 // Public facing API
 export interface CustomDeskGroupType {
@@ -49,9 +49,7 @@ function getStructure(
 ): DeskItem {
   switch (x.type) {
     // Document type
-    case 'doc': // Note schemaType is not x.doc.type
-    // x.doc.type is always document for 'document' schemas!
-    {
+    case 'doc': { // x.doc.type is always document for 'document' schemas! // Note schemaType is not x.doc.type
       const schemaType = x.doc.name
       const documentTitle = x.doc.title || schemaType
       return S.listItem()
@@ -76,9 +74,7 @@ function getStructure(
             ),
         )
     // Singleton
-    case 'singleton': // Note schemaType is not x.doc.type
-    // x.doc.type is always document for 'document' schemas!
-    {
+    case 'singleton': { // x.doc.type is always document for 'document' schemas! // Note schemaType is not x.doc.type
       const schemaType = x.doc.name
       const documentTitle = x.doc.title || schemaType
       return S.listItem()
@@ -92,7 +88,7 @@ function getStructure(
 }
 
 // Builds desk structure based on custom desk structure
-// ./customize.sanity.tsx
+// ../customize/desk.custom.sanity
 export const structure = (
   S: StructureBuilder,
   context: StructureResolverContext,
