@@ -21,6 +21,7 @@
   "dependencies": {
     "@phosphor-icons/react": "^2.0.15",
     "@sanity/vision": "^3.24.1",
+    "groqd": "^0.15.10",
     "next": "^14.0.4",
     "next-sanity": "^7.0.9",
     "react": "^18.2.0",
