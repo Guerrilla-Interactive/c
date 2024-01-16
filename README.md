@@ -10,3 +10,7 @@
 1. Note before installing other icon packages that [@phosphor-icons/react] is pre-installed.
 
 [@phosphor-icons/react](https://github.com/phosphor-icons/react)
+
+## Notes
+
+1. Following the response to this issue <https://github.com/sanity-io/preview-kit/issues/789>, we're using <https://github.com/sanity-io/nextjs-blog-cms-sanity-v3/blob/main/package.json> as reference for making Sanity Presentation along with Preview from document desk structure work together.
