@@ -12,7 +12,10 @@ interface PageData {
 }
 
 export function PreviewHomePage(props: PreviewProps) {
-  const [data, loadingData] = useLiveQuery<PageData>(props.initial, dataQuery)
+  const [data, loadingData] = useLiveQuery<PageData>(
+    props.initial,
+    dataQuery.query,
+  )
   return (
     <div>
       Preview - {data.title} - {loadingData ? 'loading' : ''}
