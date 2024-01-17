@@ -2,8 +2,8 @@ import '@/styles/globals.css'
 
 import { draftMode } from 'next/headers'
 
-import PreviewProvider from '@/componentspreview/preview-provider'
-import VisualEditing from '@/componentspreview/visual-editing'
+import PreviewProvider from '@/components/preview/preview-provider'
+import VisualEditing from '@/components/preview/visual-editing'
 import { serverEnv } from '@/lib/env/server'
 
 export const metadata = {

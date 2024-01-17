@@ -2,7 +2,7 @@
 import { LiveQueryProvider } from 'next-sanity/preview'
 import { useMemo } from 'react'
 
-import { getClient } from '@/sanityclient'
+import { getClient } from '@/sanity/client'
 
 export default function PreviewProvider({
 	children,
