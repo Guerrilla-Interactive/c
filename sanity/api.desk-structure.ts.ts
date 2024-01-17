@@ -1,6 +1,7 @@
 import type { DocumentDefinition } from 'sanity'
 import type {
   Divider,
+  DocumentOptions,
   ListItem,
   ListItemBuilder,
   StructureBuilder,
@@ -8,6 +9,7 @@ import type {
 } from 'sanity/structure'
 
 import { customDeskStructure } from './customize/desk.custom.sanity'
+import { documentPreviewViews } from './preview-document-node'
 
 // Public facing API
 export interface CustomDeskGroupType {
@@ -19,14 +21,22 @@ export interface CustomDeskGroupType {
   >
 }
 
+interface CustomDocumentOptions extends DocumentOptions {
+  previewable?: boolean
+}
+
+export interface CustomDocumentDefinition extends DocumentDefinition {
+  options?: CustomDocumentOptions
+}
+
 export interface CustomDeskDocType {
   type: 'doc'
-  doc: DocumentDefinition
+  doc: CustomDocumentDefinition
 }
 
 export interface CustomDeskDocSingletonType {
   type: 'singleton'
-  doc: DocumentDefinition
+  doc: CustomDocumentDefinition
 }
 
 type DeskItem = ListItemBuilder | ListItem | Divider
@@ -49,7 +59,8 @@ function getStructure(
 ): DeskItem {
   switch (x.type) {
     // Document type
-    case 'doc': { // x.doc.type is always document for 'document' schemas! // Note schemaType is not x.doc.type
+    case 'doc': {
+      // x.doc.type is always document for 'document' schemas! // Note schemaType is not x.doc.type
       const schemaType = x.doc.name
       const documentTitle = x.doc.title || schemaType
       return S.listItem()
@@ -74,13 +85,20 @@ function getStructure(
             ),
         )
     // Singleton
-    case 'singleton': { // x.doc.type is always document for 'document' schemas! // Note schemaType is not x.doc.type
+    case 'singleton': {
+      // x.doc.type is always document for 'document' schemas! // Note schemaType is not x.doc.type
       const schemaType = x.doc.name
       const documentTitle = x.doc.title || schemaType
       return S.listItem()
         .title(documentTitle)
         .icon(x.doc.icon)
-        .child(S.document().schemaType(schemaType).documentId(documentTitle))
+        .child(
+          S.document()
+            .schemaType(schemaType)
+            .documentId(documentTitle)
+            .views([])
+            .views(x.doc?.options?.previewable ? documentPreviewViews(S) : []),
+        )
     }
     default:
       throw x

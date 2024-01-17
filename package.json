@@ -20,13 +20,17 @@
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.0.15",
+    "@sanity/overlays": "^2.3.6",
+    "@sanity/preview-url-secret": "^1.5.2",
     "@sanity/vision": "^3.24.1",
     "groqd": "^0.15.10",
     "next": "^14.0.4",
     "next-sanity": "^7.0.10",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "rxjs": "^7.8.1",
     "sanity": "^3.24.1",
+    "sanity-plugin-iframe-pane": "^3.1.3",
     "server-only": "^0.0.1",
     "zod": "^3.22.4"
   },

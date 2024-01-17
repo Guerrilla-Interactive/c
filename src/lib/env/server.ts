@@ -1,3 +1,5 @@
+import "server-only"
+
 import { formatErrors } from './client'
 import { serverEnvSchema } from './schema'
 
