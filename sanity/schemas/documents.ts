@@ -1,5 +1,7 @@
 import { defineType } from 'sanity'
 
+import type { CustomDocumentDefinition } from '@/sanityapi.desk-structure.ts'
+
 export const article = defineType({
   type: 'document',
   title: 'Article',
@@ -13,7 +15,7 @@ export const article = defineType({
       name: 'Title',
     },
   ],
-})
+}) as CustomDocumentDefinition
 
 export const settings = defineType({
   type: 'document',
@@ -29,4 +31,4 @@ export const settings = defineType({
       title: 'Site Title',
     },
   ],
-})
+}) as CustomDocumentDefinition

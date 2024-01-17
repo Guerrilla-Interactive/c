@@ -1,5 +1,6 @@
-import { defineField,defineType } from "sanity";
+import { defineField, defineType } from "sanity";
 
+import type { CustomDocumentDefinition } from "@/sanity/api.desk-structure.ts";
 import { defaultGroups } from "@/sanity/schema-utils/default-groups.util";
 import { metaFields } from "@/sanity/schema-utils/generator-field/meta-fields.field";
 
@@ -32,4 +33,4 @@ export const sumanIndexSchema = defineType({
       };
     },
   },
-});
+}) as CustomDocumentDefinition;
