@@ -23,6 +23,7 @@ export interface CustomDeskGroupType {
 
 interface CustomDocumentOptions extends DocumentOptions {
   previewable?: boolean
+  linkable?: boolean
   isSingleton?: boolean
 }
 
