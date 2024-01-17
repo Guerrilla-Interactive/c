@@ -1,24 +1,22 @@
-'use client'
-import { useLiveQuery } from 'next-sanity/preview'
+"use client"
+import { PreviewLoadingErrorHOC } from '@/components/preview/preview-wrapper'
 
-import { dataQuery } from '../(suman-index-server)/suman.index-query'
+import type { SumanIndexQuery} from '../(suman-index-server)/suman.index-query';
+import { sumanIndexQuery } from '../(suman-index-server)/suman.index-query'
+import SumanIndexBody from './suman.index-component'
 
 interface PreviewProps {
-  initial: PageData
-}
-
-interface PageData {
-  title: string
+  initial: SumanIndexQuery
+  queryParams?: { slug: string }
 }
 
 export function PreviewHomePage(props: PreviewProps) {
-  const [data, loadingData] = useLiveQuery<PageData>(
-    props.initial,
-    dataQuery.query,
-  )
   return (
-    <div>
-      Preview - {data.title} - {loadingData ? 'loading' : ''}
-    </div>
+    <PreviewLoadingErrorHOC
+      initial={props.initial}
+      query={sumanIndexQuery.query}
+      successFn={(data) =>
+        <SumanIndexBody data={data} />
+      } />
   )
 }

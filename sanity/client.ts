@@ -12,7 +12,7 @@ export function getClient(preview?: { token: string }): SanityClient {
     encodeSourceMap: preview?.token ? true : false,
     studioUrl: '/studio',
   })
-  if (preview) {
+  if (preview?.token) {
     if (!preview.token) {
       throw new Error('You must provide a token to preview drafts')
     }

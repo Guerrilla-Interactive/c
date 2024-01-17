@@ -12,6 +12,7 @@ export const sumanIndexSchema = defineType({
   options: {
     previewable: true,
     linkable: true,
+    isSingleton: true,
   },
   fields: [
     defineField({
