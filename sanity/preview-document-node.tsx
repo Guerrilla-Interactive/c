@@ -4,8 +4,11 @@
 // It's part of the Studio's “Structure Builder API” and is documented here:
 // https://www.sanity.io/docs/structure-builder-reference
 
-import type { DefaultDocumentNodeResolver, StructureBuilder } from 'sanity/structure'
-import { Iframe, } from 'sanity-plugin-iframe-pane'
+import type {
+  DefaultDocumentNodeResolver,
+  StructureBuilder,
+} from 'sanity/structure'
+import { Iframe } from 'sanity-plugin-iframe-pane'
 
 // // import AuthorAvatarPreviewPane from './AuthorAvatarPreviewPane'
 //
@@ -38,26 +41,28 @@ import { Iframe, } from 'sanity-plugin-iframe-pane'
 // }
 
 export const defaultDocumentNode: DefaultDocumentNodeResolver = (S, ctx) => {
-	const schemaType = ctx.schema.get(ctx.schemaType)
+  const schemaType = ctx.schema.get(ctx.schemaType)
 
-	if (!schemaType) return S.document()
+  if (!schemaType) return S.document()
 
-	return S.document().views([S.view.component(Iframe).title('suman')])
-	// .views(documentPreviewViews(S))
-
+  return S.document().views([S.view.component(Iframe).title('suman')])
+  // .views(documentPreviewViews(S))
 }
 
 export const documentPreviewViews = (S: StructureBuilder) => [
-	S.view.form(),
-	S.view.component(Iframe).title("Preview").options({
-		url: {
-			preview: getPreviewUrl,
-			draftMode: '/api/draft',
-			origin: 'same-origin'
-		}
-	}),
+  S.view.form(),
+  S.view
+    .component(Iframe)
+    .title('Preview')
+    .options({
+      url: {
+        preview: getPreviewUrl,
+        draftMode: '/api/draft',
+        origin: 'same-origin',
+      },
+    }),
 ]
 
 function getPreviewUrl() {
-	return "/suman"
+  return '/suman'
 }

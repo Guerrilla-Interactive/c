@@ -10,12 +10,12 @@ export const studioTitle = 'Studio'
 
 // Customization for the desk structure
 export const customDeskStructure: CustomDeskGroupType = {
-	title: 'Schemas',
-	type: "group",
-	items: [
-		// Replace with the desk structure you desire.
-		{ type: "singleton", doc: settings },
-		{ type: "doc", doc: article },
-		{ type: "singleton", doc: sumanIndexSchema },
-	],
+  title: 'Schemas',
+  type: 'group',
+  items: [
+    // Replace with the desk structure you desire.
+    { type: 'singleton', doc: settings },
+    { type: 'doc', doc: article },
+    { type: 'singleton', doc: sumanIndexSchema },
+  ],
 }

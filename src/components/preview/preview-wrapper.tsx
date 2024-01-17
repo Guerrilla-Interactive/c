@@ -1,7 +1,3 @@
 export function PreviewWrapper() {
-	return (
-		<div>
-			Foobar
-		</div>
-	)
+  return <div>Foobar</div>
 }

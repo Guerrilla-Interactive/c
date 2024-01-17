@@ -24,9 +24,8 @@ export default function RootLayout({
         </PreviewProvider>
       ) : (
         <body>{children}</body>
-      )
-      }
+      )}
       {draftMode().isEnabled && <VisualEditing />}
-    </html >
+    </html>
   )
 }

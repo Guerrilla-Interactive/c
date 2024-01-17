@@ -1,8 +1,8 @@
-import { defineField } from "sanity"
+import { defineField } from 'sanity'
 
 export const metaFields = ({
-  title = "SEO & metadata",
-  group = "meta",
+  title = 'SEO & metadata',
+  group = 'meta',
   includeTags = true,
 }: {
   includeTags?: boolean
@@ -10,44 +10,44 @@ export const metaFields = ({
   title?: string
 }) => {
   const seo = defineField({
-    name: "metadata",
+    name: 'metadata',
     title,
-    type: "object",
+    type: 'object',
     ...(group && { group }),
     fields: [
       defineField({
-        name: "title",
-        title: "Title for search engines",
-        type: "string",
+        name: 'title',
+        title: 'Title for search engines',
+        type: 'string',
         validation: (Rule) =>
           Rule.max(50).warning(
-            "The title exceeds 50 characters and may me truncated (...)"
+            'The title exceeds 50 characters and may me truncated (...)',
           ),
       }),
       defineField({
-        name: "desc",
-        title: "Description for search engines",
-        type: "text",
+        name: 'desc',
+        title: 'Description for search engines',
+        type: 'text',
         rows: 3,
         validation: (Rule) =>
           Rule.max(150).warning(
-            "The description exceeds 150 characters and may me truncated (...)"
+            'The description exceeds 150 characters and may me truncated (...)',
           ),
       }),
       {
-        name: "graphic",
-        title: "Image for sharing in social media",
-        type: "image",
-        description: "Recommended size: 1200x630 (PNG or JPG)",
+        name: 'graphic',
+        title: 'Image for sharing in social media',
+        type: 'image',
+        description: 'Recommended size: 1200x630 (PNG or JPG)',
         options: {
           collapsible: true,
-          collapsed: false
+          collapsed: false,
         },
         fields: [
           {
-            name: "alt",
-            title: "Alt text",
-            type: "string",
+            name: 'alt',
+            title: 'Alt text',
+            type: 'string',
           },
         ],
       },
@@ -55,14 +55,14 @@ export const metaFields = ({
   })
 
   const metatags = defineField({
-    name: "metatags",
-    title: "Metatags",
-    description: "Keywords related to this document",
-    type: "array",
-    of: [{ type: "string" }],
+    name: 'metatags',
+    title: 'Metatags',
+    description: 'Keywords related to this document',
+    type: 'array',
+    of: [{ type: 'string' }],
     ...(group && { group }),
     options: {
-      layout: "tags",
+      layout: 'tags',
     },
   })
 

@@ -1,10 +1,10 @@
-import "server-only"
+import 'server-only'
 
 import { formatErrors } from './client'
 import { serverEnvSchema } from './schema'
 
 const serverEnvRaw = {
-  SANITY_API_READ_TOKEN: process.env.SANITY_API_READ_TOKEN
+  SANITY_API_READ_TOKEN: process.env.SANITY_API_READ_TOKEN,
 }
 
 // Parse the env variables provided against the defined schema

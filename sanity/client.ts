@@ -10,7 +10,7 @@ export function getClient(preview?: { token: string }): SanityClient {
     useCdn: false,
     perspective: 'published',
     encodeSourceMap: preview?.token ? true : false,
-    studioUrl: "/studio",
+    studioUrl: '/studio',
   })
   if (preview) {
     if (!preview.token) {
