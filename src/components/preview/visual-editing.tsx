@@ -1,19 +1,12 @@
-// ./components/VisualEditing.tsx
-
 'use client'
-
-import type { HistoryAdapterNavigate } from '@sanity/overlays';
+import type { HistoryAdapterNavigate } from '@sanity/overlays'
 import { enableOverlays } from '@sanity/overlays'
-import { useLiveMode } from '@sanity/react-loader'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 
-import { getClient } from '@/sanity/client'
-
-// Always enable stega in Live Mode
-const stegaClient = getClient().withConfig({ stega: true })
-
 export default function VisualEditing() {
+  const pathname = usePathname()
+  const searchParams = useSearchParams()
   const router = useRouter()
   const routerRef = useRef(router)
   const [navigate, setNavigate] = useState<HistoryAdapterNavigate | undefined>()
@@ -44,9 +37,6 @@ export default function VisualEditing() {
     })
     return () => disable()
   }, [])
-
-  const pathname = usePathname()
-  const searchParams = useSearchParams()
   useEffect(() => {
     if (navigate) {
       navigate({
@@ -55,14 +45,6 @@ export default function VisualEditing() {
       })
     }
   }, [navigate, pathname, searchParams])
-
-  useLiveMode({ client: stegaClient })
-  useEffect(() => {
-    // If not an iframe or a Vercel Preview deployment, turn off Draft Mode
-    if (process.env.NEXT_PUBLIC_VERCEL_ENV !== 'preview' && window === parent) {
-      location.href = '/api/disable-draft'
-    }
-  }, [])
 
   return null
 }
