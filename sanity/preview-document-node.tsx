@@ -4,65 +4,48 @@
 // It's part of the Studio's “Structure Builder API” and is documented here:
 // https://www.sanity.io/docs/structure-builder-reference
 
+import type { SanityDocument } from 'next-sanity'
 import type {
   DefaultDocumentNodeResolver,
   StructureBuilder,
 } from 'sanity/structure'
 import { Iframe } from 'sanity-plugin-iframe-pane'
 
-// // import AuthorAvatarPreviewPane from './AuthorAvatarPreviewPane'
-//
-// const iframeOptions = {
-// 	url: {
-// 		origin: 'same-origin',
-// 		preview: (document) => {
-// 			if (!document) {
-// 				return new Error('Missing document')
-// 			}
-// 			switch (document._type) {
-// 				case 'suman':
-// 					return 'suman'
-// 				default:
-// 					return new Error(`Unknown document type: ${document?._type}`)
-// 			}
-// 		},
-// 		draftMode: "/api/draft",
-// 	},
-// 	reload: { button: true },
-// } satisfies IframeOptions
-//
-// export const previewDocumentNode = (): DefaultDocumentNodeResolver => {
-// 	return (S,) => {
-// 		return S.document().views([
-// 			S.view.form(),
-// 			S.view.component(Iframe).options(iframeOptions).title('Preview'),
-// 		])
-// 	}
-// }
+import { resolvePath } from './customize/resolve-path'
+import { PREVIEW_DOC_TYPES } from './sanity.consts'
+
+const iframeOptions = {
+  url: {
+    preview: getPreviewUrl,
+    draftMode: '/api/draft',
+    origin: 'same-origin',
+  },
+}
 
 export const defaultDocumentNode: DefaultDocumentNodeResolver = (S, ctx) => {
   const schemaType = ctx.schema.get(ctx.schemaType)
 
   if (!schemaType) return S.document()
 
-  return S.document().views([S.view.component(Iframe).title('suman')])
-  // .views(documentPreviewViews(S))
+  // Add preview if the schema option marks the document as previewable 
+  if (PREVIEW_DOC_TYPES.includes(schemaType.name)) {
+    return S.document().views([S.view.component(Iframe).title('suman')])
+  }
+
+  return S.document()
 }
 
+// Used for singletons
 export const documentPreviewViews = (S: StructureBuilder) => [
   S.view.form(),
   S.view
     .component(Iframe)
     .title('Preview')
-    .options({
-      url: {
-        preview: getPreviewUrl,
-        draftMode: '/api/draft',
-        origin: 'same-origin',
-      },
-    }),
+    .options(iframeOptions)
 ]
 
-function getPreviewUrl() {
-  return '/suman'
+function getPreviewUrl(doc: SanityDocument) {
+  const defaultPath = "/"
+  const path = resolvePath(doc._type, doc?.slug?.current || null) || defaultPath
+  return path
 }

@@ -2,6 +2,7 @@ import { visionTool } from '@sanity/vision'
 import { defineConfig } from 'sanity'
 import { presentationTool } from 'sanity/presentation'
 import { structureTool } from 'sanity/structure'
+import { chapaiSlugSchema } from 'src/app/chapai/(index)/(chapai-index-core)/(chapai-index-server)/chapai.index-schema'
 import { sumanIndexSchema } from 'src/app/suman/(index)/(suman-index-core)/(suman-index-server)/suman.index-schema'
 
 import { clientEnv } from '@/lib/env/client'
@@ -17,7 +18,7 @@ export default defineConfig({
   dataset: clientEnv.NEXT_PUBLIC_SANITY_DATASET,
   title: studioTitle,
   schema: {
-    types: [article, settings, sumanIndexSchema],
+    types: [article, settings, sumanIndexSchema, chapaiSlugSchema],
   },
   plugins: [
     structureTool({ structure: structure, defaultDocumentNode }),
