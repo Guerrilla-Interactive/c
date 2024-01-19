@@ -14,7 +14,8 @@ export const customDeskStructure: CustomDeskGroupType = {
   title: 'Schemas',
   type: 'group',
   items: [
-    // Replace with the desk structure you desire.
+    // ADD DESK STRUCTURES AFTER THIS COMMENT
+    // DO NOT REMOVE: MAGIC_STRING_LINE_FIRST_IMPORT
     { type: 'singleton', doc: settings },
     { type: 'singleton', doc: sumanIndexSchema },
     {
