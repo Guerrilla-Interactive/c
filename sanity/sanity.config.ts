@@ -8,7 +8,7 @@ import { clientEnv } from '@/lib/env/client'
 import { structure } from './api.desk-structure.ts'
 import { studioTitle } from './customize/desk.custom.sanity'
 import { defaultDocumentNode } from './preview-document-node'
-import { schemaTypes } from './schemas/index'
+import { schemaTypes } from './schemas'
 
 export default defineConfig({
   basePath: '/studio',
@@ -16,7 +16,7 @@ export default defineConfig({
   dataset: clientEnv.NEXT_PUBLIC_SANITY_DATASET,
   title: studioTitle,
   schema: {
-    // Do not add types here, consult to the defintion of 
+    // Do not add types here, consult to the defintion of
     // schemaTypes for details on adding new schemas.
     types: schemaTypes,
   },
