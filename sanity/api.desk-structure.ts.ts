@@ -62,7 +62,8 @@ function getStructure(
   switch (x.type) {
     // Document type
     case 'doc': {
-      // x.doc.type is always document for 'document' schemas! // Note schemaType is not x.doc.type
+      // x.doc.type is always document for 'document' schemas!
+      // Note schemaType is x.doc.name NOT x.doc.type
       const schemaType = x.doc.name
       const documentTitle = x.doc.title || schemaType
       return S.listItem()

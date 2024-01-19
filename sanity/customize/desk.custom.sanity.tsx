@@ -1,6 +1,6 @@
 // Theme customization, desk structure here
 // Add plugins in the sanity.config.ts(x) file
-import { chapaiSlugSchema } from 'src/app/chapai/(index)/(chapai-index-core)/(chapai-index-server)/chapai.index-schema'
+import { chapaiIndexSchema } from 'src/app/chapai/(index)/(chapai-index-core)/(chapai-index-server)/chapai.index-schema'
 import { sumanIndexSchema } from 'src/app/suman/(index)/(suman-index-core)/(suman-index-server)/suman.index-schema'
 
 import type { CustomDeskGroupType } from '@/sanity/api.desk-structure.ts'
@@ -21,7 +21,7 @@ export const customDeskStructure: CustomDeskGroupType = {
       title: 'Articles And Chaapi',
       type: 'group',
       items: [
-        { type: 'singleton', doc: chapaiSlugSchema },
+        { type: 'singleton', doc: chapaiIndexSchema },
         { type: 'doc', doc: article },
       ],
     },
