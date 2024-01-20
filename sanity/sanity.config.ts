@@ -6,7 +6,7 @@ import { structureTool } from 'sanity/structure'
 import { clientEnv } from '@/lib/env/client'
 
 import { structure } from './api.desk-structure.ts'
-import { studioTitle } from './customize/desk.custom.sanity'
+import { studioTitle } from './customize/desk.customize.sanity'
 import { defaultDocumentNode } from './preview-document-node'
 import { schemaTypes } from './schemas'
 

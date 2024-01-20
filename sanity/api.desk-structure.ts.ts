@@ -8,7 +8,7 @@ import type {
   StructureResolverContext,
 } from 'sanity/structure'
 
-import { customDeskStructure } from './customize/desk.custom.sanity'
+import { customDeskStructure } from './customize/desk.customize.sanity'
 import { documentPreviewViews } from './preview-document-node'
 
 // Public facing API
