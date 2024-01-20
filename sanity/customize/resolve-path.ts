@@ -2,7 +2,7 @@
 // For example if: category types in sanity are rendered in the page
 // categories/[slug] and that product detail pages are available in
 // products/[slug], we use the following definition:
-// 
+//
 // productIndex document -> "/products"
 // productIndex: "products",
 // product: "pieces",
@@ -10,8 +10,9 @@
 // category: "categories",
 //
 export const PATHS = {
-  suman: "suman",
-  chapai: "chapai",
+  // NGO: DO NOT REMOVE: MAGIC_STRING_SCHEMA_TYPE_TO_PATH_PREFIX
+  suman: '/suman',
+  chapai: 'chapai',
 } as const
 
 export function resolvePath(type: string, slug?: string | null) {
@@ -21,9 +22,10 @@ export function resolvePath(type: string, slug?: string | null) {
 
   // If path mapping not found use slug as base path
   if (!path) {
-    return slug ? `/${slug}` : "/"
+    return slug ? `/${slug}` : '/'
   }
 
   // Apppend slug if it exists
-  return `/${path}${slug ? `/${slug}` : ""}`
+  const toReturn = `/${path}${slug ? `/${slug}` : ''}`
+  return toReturn.replaceAll('//', '/')
 }
