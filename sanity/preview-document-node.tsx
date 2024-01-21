@@ -3,7 +3,7 @@
 // and have access to content in the form in real-time.
 // It's part of the Studio's “Structure Builder API” and is documented here:
 // https://www.sanity.io/docs/structure-builder-reference
-
+import { Eye, PencilSimple } from '@phosphor-icons/react'
 import type { SanityDocument } from 'next-sanity'
 import type {
   DefaultDocumentNodeResolver,
@@ -27,9 +27,16 @@ export const defaultDocumentNode: DefaultDocumentNodeResolver = (S, ctx) => {
 
   if (!schemaType) return S.document()
 
-  // Add preview if the schema option marks the document as previewable 
+  // Add preview if the schema option marks the document as previewable
   if (PREVIEW_DOC_TYPES.includes(schemaType.name)) {
-    return S.document().views([S.view.component(Iframe).title('suman')])
+    return S.document().views([
+      S.view.form().icon(PencilSimple),
+      S.view
+        .component(Iframe)
+        .title('Preview')
+        .icon(Eye)
+        .options(iframeOptions),
+    ])
   }
 
   return S.document()
@@ -38,14 +45,11 @@ export const defaultDocumentNode: DefaultDocumentNodeResolver = (S, ctx) => {
 // Used for singletons
 export const documentPreviewViews = (S: StructureBuilder) => [
   S.view.form(),
-  S.view
-    .component(Iframe)
-    .title('Preview')
-    .options(iframeOptions)
+  S.view.component(Iframe).title('Preview').options(iframeOptions),
 ]
 
 function getPreviewUrl(doc: SanityDocument) {
-  const defaultPath = "/"
+  const defaultPath = '/'
   const path = resolvePath(doc._type, doc?.slug?.current || null) || defaultPath
   return path
 }
