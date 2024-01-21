@@ -1,4 +1,10 @@
-export const defaultGroups = [
+type GroupTypeName = 'basic' | 'content' | 'meta'
+
+interface GroupType {
+  title: string
+  name: GroupTypeName
+}
+export const defaultGroups: Array<GroupType> = [
   {
     title: 'Basic',
     name: 'basic',
@@ -12,3 +18,11 @@ export const defaultGroups = [
     name: 'meta',
   },
 ]
+
+export const SanityFieldGroups = defaultGroups.reduce(
+  (prev, curr) => ({
+    ...prev,
+    [curr.name]: curr.name,
+  }),
+  {},
+) as Record<GroupTypeName, GroupTypeName>
