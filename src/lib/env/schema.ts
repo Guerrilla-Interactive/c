@@ -9,3 +9,7 @@ export const clientEnvSchema = z.object({
   NEXT_PUBLIC_SANITY_DATASET: z.string(),
   NEXT_PUBLIC_SANITY_API_VERSION: z.string(),
 })
+
+export const serverEnvSchema = z.object({
+  SANITY_API_READ_TOKEN: z.string(),
+})

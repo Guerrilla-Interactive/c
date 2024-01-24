@@ -1,13 +1,15 @@
 import type { DocumentDefinition } from 'sanity'
 import type {
   Divider,
+  DocumentOptions,
   ListItem,
   ListItemBuilder,
   StructureBuilder,
   StructureResolverContext,
 } from 'sanity/structure'
 
-import { customDeskStructure } from './customize.sanity'
+import { customDeskStructure } from './customize/desk.customize.sanity'
+import { documentPreviewViews } from './preview-document-node'
 
 // Public facing API
 export interface CustomDeskGroupType {
@@ -19,14 +21,24 @@ export interface CustomDeskGroupType {
   >
 }
 
+interface CustomDocumentOptions extends DocumentOptions {
+  previewable?: boolean
+  linkable?: boolean
+  isSingleton?: boolean
+}
+
+export interface CustomDocumentDefinition extends DocumentDefinition {
+  options?: CustomDocumentOptions
+}
+
 export interface CustomDeskDocType {
   type: 'doc'
-  doc: DocumentDefinition
+  doc: CustomDocumentDefinition
 }
 
 export interface CustomDeskDocSingletonType {
   type: 'singleton'
-  doc: DocumentDefinition
+  doc: CustomDocumentDefinition
 }
 
 type DeskItem = ListItemBuilder | ListItem | Divider
@@ -49,9 +61,9 @@ function getStructure(
 ): DeskItem {
   switch (x.type) {
     // Document type
-    case 'doc': // Note schemaType is not x.doc.type
-    // x.doc.type is always document for 'document' schemas!
-    {
+    case 'doc': {
+      // x.doc.type is always document for 'document' schemas!
+      // Note schemaType is x.doc.name NOT x.doc.type
       const schemaType = x.doc.name
       const documentTitle = x.doc.title || schemaType
       return S.listItem()
@@ -76,15 +88,20 @@ function getStructure(
             ),
         )
     // Singleton
-    case 'singleton': // Note schemaType is not x.doc.type
-    // x.doc.type is always document for 'document' schemas!
-    {
+    case 'singleton': {
+      // x.doc.type is always document for 'document' schemas! // Note schemaType is not x.doc.type
       const schemaType = x.doc.name
       const documentTitle = x.doc.title || schemaType
       return S.listItem()
         .title(documentTitle)
         .icon(x.doc.icon)
-        .child(S.document().schemaType(schemaType).documentId(documentTitle))
+        .child(
+          S.document()
+            .schemaType(schemaType)
+            .documentId(documentTitle)
+            .views([])
+            .views(x.doc?.options?.previewable ? documentPreviewViews(S) : []),
+        )
     }
     default:
       throw x
@@ -92,7 +109,7 @@ function getStructure(
 }
 
 // Builds desk structure based on custom desk structure
-// ./customize.sanity.tsx
+// ../customize/desk.custom.sanity
 export const structure = (
   S: StructureBuilder,
   context: StructureResolverContext,

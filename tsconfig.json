@@ -16,12 +16,12 @@
     "jsx": "preserve",
     // Leave the baseUrl unchanged and update paths assume the base dir is root
     // irrespective of whether src dir is present
-    "baseUrl": ".", 
+    "baseUrl": ".",
     "paths": {
       "@/lib/*": ["./src/lib/*"],
       "@/styles/*": ["./styles/*"],
-      "@/sanity*": ["./sanity/*"],
-      "@/components*": ["./src/components/*"],
+      "@/sanity/*": ["./sanity/*"],
+      "@/components/*": ["./src/components/*"]
     },
     "plugins": [
       {
@@ -29,6 +29,6 @@
       }
     ]
   },
-  "include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx", "*.ts", "*.tsx"],
   "exclude": ["node_modules"]
 }

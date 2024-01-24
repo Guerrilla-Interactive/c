@@ -1,12 +1,14 @@
 import { visionTool } from '@sanity/vision'
 import { defineConfig } from 'sanity'
+import { presentationTool } from 'sanity/presentation'
 import { structureTool } from 'sanity/structure'
 
 import { clientEnv } from '@/lib/env/client'
 
 import { structure } from './api.desk-structure.ts'
-import { studioTitle } from './customize.sanity'
-import { article, settings } from './schemas/documents'
+import { studioTitle } from './customize/desk.customize.sanity'
+import { defaultDocumentNode } from './preview-document-node'
+import { schemaTypes } from './schemas'
 
 export default defineConfig({
   basePath: '/studio',
@@ -14,10 +16,19 @@ export default defineConfig({
   dataset: clientEnv.NEXT_PUBLIC_SANITY_DATASET,
   title: studioTitle,
   schema: {
-    types: [article, settings],
+    // Do not add types here, consult to the defintion of
+    // schemaTypes for details on adding new schemas.
+    types: schemaTypes,
   },
   plugins: [
-    structureTool({ structure: structure }),
+    structureTool({ structure: structure, defaultDocumentNode }),
     visionTool({ defaultApiVersion: clientEnv.NEXT_PUBLIC_SANITY_API_VERSION }), // Add GROQ query playground
+    presentationTool({
+      previewUrl: {
+        draftMode: {
+          enable: '/api/draft',
+        },
+      },
+    }),
   ],
 })
