@@ -23,3 +23,12 @@
 ```
 pnpm add sanity@latest @sanity/vision@latest @sanity/overlays@latest @sanity/preview-url-secret@latest
 ```
+
+## Sanity Schemas
+
+1. Note that any Sanity Schema definition must be of type `CustomDocumentDefinition`. See example schema defintion and the import path for `CustomDocumentDefinition` type [here](https://github.com/Guerrilla-Interactive/c/blob/ccce8499fef4ac0df56c2e1671e9873b13ab2579/sanity/schemas/article.ts).
+
+
+## Sanity Desk Structure Customization
+
+We propose a simpler API for sanity desk structure customization. See https://github.com/Guerrilla-Interactive/c/issues/4 for the details.
