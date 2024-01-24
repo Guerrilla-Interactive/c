@@ -1,3 +1,4 @@
+import { AlignLeft } from '@phosphor-icons/react'
 import { defineField, defineType } from 'sanity'
 
 import type { CustomDocumentDefinition } from '@/sanity/api.desk-structure.ts'
@@ -8,6 +9,7 @@ export const sumanIndexSchema = defineType({
   type: 'document',
   name: 'suman',
   title: 'Suman',
+  icon: AlignLeft,
   groups: defaultGroups,
   options: {
     previewable: true,
