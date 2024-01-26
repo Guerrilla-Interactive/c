@@ -5,7 +5,8 @@ import { clientEnvSchema } from './schema'
 const clientEnvRaw = {
   NEXT_PUBLIC_SANITY_PROJECT_ID: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
   NEXT_PUBLIC_SANITY_DATASET: process.env.NEXT_PUBLIC_SANITY_DATASET,
-  NEXT_PUBLIC_SANITY_API_VERSION: process.env.NEXT_PUBLIC_SANITY_API_VERSION,
+  NEXT_PUBLIC_SANITY_API_VERSION:
+    process.env.NEXT_PUBLIC_SANITY_API_VERSION || '2023-12-26',
 }
 
 // Parse the env variables provided against the defined schema
