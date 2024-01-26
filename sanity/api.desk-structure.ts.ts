@@ -17,7 +17,10 @@ export interface CustomDeskGroupType {
   icon?: React.ElementType
   title: string
   items: Array<
-    CustomDeskDocType | CustomDeskGroupType | CustomDeskDocSingletonType
+    | CustomDeskDocType
+    | CustomDeskGroupType
+    | CustomDeskDocSingletonType
+    | CustomDeskItem
   >
 }
 
@@ -34,6 +37,11 @@ export interface CustomDocumentDefinition extends DocumentDefinition {
 export interface CustomDeskDocType {
   type: 'doc'
   doc: CustomDocumentDefinition
+}
+
+export interface CustomDeskItem {
+  type: 'customDeskItem'
+  item: (S: StructureBuilder, context: StructureResolverContext) => DeskItem
 }
 
 export interface CustomDeskDocSingletonType {
@@ -82,7 +90,13 @@ function getStructure(
             .title(x.title)
             .items(
               insertDividersInMiddle(
-                x.items.map((y) => getStructure(y, S, context)),
+                x.items.map((y) => {
+                  if (y.type === 'customDeskItem') {
+                    return y.item(S, context)
+                  } else {
+                    return getStructure(y, S, context)
+                  }
+                }),
                 S,
               ),
             ),
@@ -115,8 +129,12 @@ export const structure = (
   context: StructureResolverContext,
 ) => {
   const title = customDeskStructure.title
-  const items = customDeskStructure.items.map((x) =>
-    getStructure(x, S, context),
-  )
+  const items = customDeskStructure.items.map((x) => {
+    if (x.type == 'customDeskItem') {
+      return x.item(S, context)
+    } else {
+      return getStructure(x, S, context)
+    }
+  })
   return S.list().title(title).items(insertDividersInMiddle(items, S))
 }
