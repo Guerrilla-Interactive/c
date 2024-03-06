@@ -11,6 +11,7 @@
 //
 export const PATHS = {
   // NGO: DO NOT REMOVE: MAGIC_STRING_SCHEMA_TYPE_TO_PATH_PREFIX
+  root: '',
 } as const
 
 export function resolvePath(type: string, slug?: string | null) {

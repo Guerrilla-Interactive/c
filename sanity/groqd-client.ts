@@ -1,6 +1,6 @@
 import { makeSafeQueryRunner } from 'groqd'
 
-import { serverEnv } from '@/lib/env/server'
+import { serverEnv } from '@/lib/env/server.ts'
 
 import { getClient } from './client'
 

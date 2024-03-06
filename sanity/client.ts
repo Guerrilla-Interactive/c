@@ -7,6 +7,7 @@ export function getClient(preview?: { token: string }): SanityClient {
     projectId: clientEnv.NEXT_PUBLIC_SANITY_PROJECT_ID,
     dataset: clientEnv.NEXT_PUBLIC_SANITY_DATASET,
     apiVersion: clientEnv.NEXT_PUBLIC_SANITY_API_VERSION,
+    
     useCdn: false,
     perspective: 'published',
     encodeSourceMap: preview?.token ? true : false,

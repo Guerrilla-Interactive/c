@@ -3,7 +3,7 @@ import { defineConfig } from 'sanity'
 import { presentationTool } from 'sanity/presentation'
 import { structureTool } from 'sanity/structure'
 
-import { clientEnv } from '@/lib/env/client'
+import { clientEnv } from '@/lib/env/client.ts'
 
 import { structure } from './api.desk-structure.ts'
 import { studioTitle } from './customize/desk.customize.sanity'
