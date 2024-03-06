@@ -12,6 +12,7 @@
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
+    "allowImportingTsExtensions": true,
     "isolatedModules": true,
     "jsx": "preserve",
     // Leave the baseUrl unchanged and update paths assume the base dir is root
@@ -21,7 +22,9 @@
       "@/lib/*": ["./src/lib/*"],
       "@/styles/*": ["./styles/*"],
       "@/sanity/*": ["./sanity/*"],
-      "@/components/*": ["./src/components/*"]
+      "@/components/*": ["./src/components/*"],
+      "@/nextgen-core-ui/*": ["./src/lib/nextgen-core-ui/*"],
+      "@/lib/utils/*": ["./src/lib/utils/*"]
     },
     "plugins": [
       {
@@ -29,6 +32,16 @@
       }
     ]
   },
-  "include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx", "*.ts", "*.tsx"],
+  "include": [
+    "next-env.d.ts",
+    ".next/types/**/*.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "*.ts",
+    "*.tsx",
+    "src/lib/env/schema.ts",
+    "src/lib/env/client.ts",
+    "src/lib/env/server.ts"
+  ],
   "exclude": ["node_modules"]
 }

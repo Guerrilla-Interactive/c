@@ -4,7 +4,7 @@ import { validatePreviewUrl } from '@sanity/preview-url-secret'
 import { draftMode } from 'next/headers'
 import { redirect } from 'next/navigation'
 
-import { serverEnv } from '@/lib/env/server'
+import { serverEnv } from '@/lib/env/server.ts'
 import { getClient } from '@/sanity/client'
 
 const clientWithToken = getClient({ token: serverEnv.SANITY_API_READ_TOKEN })

@@ -1,27 +1,27 @@
-import type { Selection, TypeFromSelection } from "groqd"
-import { q } from "groqd"
+import type { Selection, TypeFromSelection } from 'groqd'
+import { q } from 'groqd'
 
 export const seoSettingsQuery = {
-  seoSettings: q("*")
-    .filterByType("seoSettings")
+  seoSettings: q('*')
+    .filterByType('seoSettings')
     .filter()
     .slice(0)
     .grab({
-      metadata: q("metadata").grab({
-        title: ["coalesce(metadata.title, title, name)", q.string().nullable()],
+      metadata: q('metadata').grab({
+        title: ['coalesce(metadata.title, title, name)', q.string().nullable()],
         desc: [
-          "coalesce(metadata.desc, desc, excerpt, pt::text(intro), pt::text(description),  pt::text(content))",
+          'coalesce(metadata.desc, desc, excerpt, pt::text(intro), pt::text(description),  pt::text(content))',
           q.string().nullable(),
         ],
-        graphic: q("graphic")
+        graphic: q('graphic')
           .grab({
-            asset: q("asset")
+            asset: q('asset')
               .grab({
                 _type: q.string(),
                 _ref: q.string(),
               })
               .nullable(),
-            alt: ["coalesce(alt, asset->altText)", q.string().nullable()],
+            alt: ['coalesce(alt, asset->altText)', q.string().nullable()],
           })
           .nullable(),
       }),
@@ -30,24 +30,24 @@ export const seoSettingsQuery = {
 } satisfies Selection
 
 export const metadataQuery = {
-  metadata: q("")
+  metadata: q('')
     .grab({
       _type: q.string(),
-      slug: ["slug.current", q.string().nullable()],
-      title: ["coalesce(metadata.title, title, name)", q.string().nullable()],
+      slug: ['slug.current', q.string().nullable()],
+      title: ['coalesce(metadata.title, title, name)', q.string().nullable()],
       desc: [
-        "coalesce(metadata.desc, excerpt, pt::text(intro), pt::text(description),  pt::text(content))",
+        'coalesce(metadata.desc, excerpt, pt::text(intro), pt::text(description),  pt::text(content))',
         q.string().nullable(),
       ],
-      graphic: q("coalesce(metadata.graphic, image, featuredImage, mainImage)")
+      graphic: q('coalesce(metadata.graphic, image, featuredImage, mainImage)')
         .grab({
-          asset: q("asset")
+          asset: q('asset')
             .grab({
               _type: q.string(),
               _ref: q.string(),
             })
             .nullable(),
-          alt: ["coalesce(alt, asset->altText)", q.string().nullable()],
+          alt: ['coalesce(alt, asset->altText)', q.string().nullable()],
         })
         .nullable(),
       ...seoSettingsQuery,
@@ -55,5 +55,4 @@ export const metadataQuery = {
     .nullable(),
 } satisfies Selection
 
-export type MetadataProps = TypeFromSelection<typeof metadataQuery>["metadata"]
-
+export type MetadataProps = TypeFromSelection<typeof metadataQuery>['metadata']

@@ -19,4 +19,3 @@ export const settings = defineType({
     },
   ],
 }) as CustomDocumentDefinition
-
