@@ -1,6 +1,10 @@
 {
   "compilerOptions": {
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -19,18 +23,31 @@
     // irrespective of whether src dir is present
     "baseUrl": ".",
     "paths": {
-      "@/lib/*": ["./src/lib/*"],
-      "@/styles/*": ["./styles/*"],
-      "@/sanity/*": ["./sanity/*"],
-      "@/components/*": ["./src/components/*"],
-      "@/nextgen-core-ui/*": ["./src/lib/nextgen-core-ui/*"],
-      "@/lib/utils/*": ["./src/lib/utils/*"]
+      "@/lib/*": [
+        "./src/lib/*"
+      ],
+      "@/styles/*": [
+        "./styles/*"
+      ],
+      "@/sanity/*": [
+        "./sanity/*"
+      ],
+      "@/components/*": [
+        "./src/components/*"
+      ],
+      "@/nextgen-core-ui/*": [
+        "./src/lib/nextgen-core-ui/*"
+      ],
+      "@/lib/utils/*": [
+        "./src/lib/utils/*"
+      ]
     },
     "plugins": [
       {
         "name": "next"
       }
-    ]
+    ],
+    "target": "ES2017"
   },
   "include": [
     "next-env.d.ts",
@@ -43,5 +60,7 @@
     "src/lib/env/client.ts",
     "src/lib/env/server.ts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules"
+  ]
 }

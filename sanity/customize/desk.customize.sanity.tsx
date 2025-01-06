@@ -1,6 +1,9 @@
 // Theme customization, desk structure here
 // Add plugins in the sanity.config.ts(x) file
 // NGO: DO NOT REMOVE: MAGIC_STRING_CUSTOM_IMPORT
+import { aboutIndexSchema } from "@/sanity/schemas/documents"
+import { testIndexSchema } from "@/sanity/schemas/documents"
+import { aboutSlugSchema } from "@/sanity/schemas/documents"
 
 import type { CustomDeskGroupType } from '@/sanity/api.desk-structure.ts'
 import { rootIndexSchema, settings } from '@/sanity/schemas/documents'
@@ -16,6 +19,9 @@ export const customDeskStructure: CustomDeskGroupType = {
   items: [
     // ADD DESK STRUCTURES AFTER THIS COMMENT
     // DO NOT REMOVE: MAGIC_STRING_LINE_DESK_STRUCTURES
+    { type: 'singleton', doc: aboutIndexSchema },
+    { type: 'singleton', doc: testIndexSchema },
+    { type: 'doc', doc: aboutSlugSchema },
     { type: 'singleton', doc: settings },
     { type: 'singleton', doc: rootIndexSchema },
   ],

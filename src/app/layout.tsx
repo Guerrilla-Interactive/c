@@ -13,7 +13,7 @@ export const metadata = {
   description: 'clean starter',
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode
@@ -24,7 +24,7 @@ export default function RootLayout({
       lang="en"
     >
       <GlobalContextProvider>
-        {draftMode().isEnabled ? (
+        {(await draftMode()).isEnabled ? (
           <PreviewProvider token={serverEnv.SANITY_API_READ_TOKEN}>
             <body>{children}</body>
           </PreviewProvider>
@@ -33,7 +33,7 @@ export default function RootLayout({
             <body>{children}</body>
           </>
         )}
-        {draftMode().isEnabled && <VisualEditing />}
+        {(await draftMode()).isEnabled && <VisualEditing />}
       </GlobalContextProvider>
     </html>
   )

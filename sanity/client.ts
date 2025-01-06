@@ -10,8 +10,10 @@ export function getClient(preview?: { token: string }): SanityClient {
     
     useCdn: false,
     perspective: 'published',
-    encodeSourceMap: preview?.token ? true : false,
-    studioUrl: '/studio',
+    stega: {
+      enabled: preview?.token ? true : false,
+      studioUrl: '/studio',
+    }
   })
   if (preview?.token) {
     if (!preview.token) {
@@ -20,6 +22,8 @@ export function getClient(preview?: { token: string }): SanityClient {
     return client.withConfig({
       token: preview.token,
       useCdn: false,
+      stega:  preview?.token ? true : false,
+      
       ignoreBrowserTokenWarning: true,
       perspective: 'previewDrafts',
     })

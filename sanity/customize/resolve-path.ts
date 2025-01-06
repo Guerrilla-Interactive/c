@@ -11,6 +11,9 @@
 //
 export const PATHS = {
   // NGO: DO NOT REMOVE: MAGIC_STRING_SCHEMA_TYPE_TO_PATH_PREFIX
+  about: '/about/(index)',
+  test: '/test/(index)',
+  about: '/about',
   root: '',
 } as const
 
